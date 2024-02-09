@@ -3,7 +3,11 @@ import cors from "cors";
 import { config } from "dotenv";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
-import authRouter from "./routes/authRouter.js"
+
+// routes
+import authRouter from "./routes/authRouter.js";
+import userRouter from './routes/userRouter.js';
+
 config();
 
 const app = express();
@@ -23,7 +27,7 @@ app.use(cors(corsOptions));
 app.use(cookieParser())
 /// api router 
 app.use('/api/v1',authRouter )
-
+app.use('/api/v1',userRouter)
 app.get("/", (req, res) => {
   res.status(200).send({ message: "Welcome to the API!" });
 });
