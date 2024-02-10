@@ -7,8 +7,9 @@ import cookieParser from "cookie-parser";
 // routes
 import authRouter from "./routes/authRouter.js";
 import userRouter from './routes/userRouter.js';
-
+import postRouter from './routes/postRouter.js'
 config();
+
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(cookieParser())
 /// api router 
 app.use('/api/v1',authRouter )
 app.use('/api/v1',userRouter)
+app.use("/api/v1", postRouter);
 app.get("/", (req, res) => {
   res.status(200).send({ message: "Welcome to the API!" });
 });
