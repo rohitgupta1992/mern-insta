@@ -7,7 +7,8 @@ import cookieParser from "cookie-parser";
 // routes
 import authRouter from "./routes/authRouter.js";
 import userRouter from './routes/userRouter.js';
-import postRouter from './routes/postRouter.js'
+import postRouter from './routes/postRouter.js';
+import commentRouter from './routes/commentRouter.js'
 config();
 
 
@@ -25,11 +26,14 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.use(cookieParser())
+app.use(cookieParser());
 /// api router 
-app.use('/api/v1',authRouter )
-app.use('/api/v1',userRouter)
+app.use('/api/v1',authRouter );
+app.use('/api/v1',userRouter);
 app.use("/api/v1", postRouter);
+app.use("/api/v1", commentRouter);
+
+
 app.get("/", (req, res) => {
   res.status(200).send({ message: "Welcome to the API!" });
 });
