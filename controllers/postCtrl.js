@@ -164,26 +164,26 @@ const postCtrl = {
     },
     getPostsDicover: async (req, res) => {
         try {
-
+            
             const newArr = [...req.user.following, req.user._id]
 
-            const num  = req.query.num || 9
+            const num  = req.query.num || 2
 
             const posts = await Posts.aggregate([
-                { $match: { user : { $nin: newArr } } },
+                { $match: { user : { $in: newArr } } },
                 { $sample: { size: Number(num) } },
             ])
-
+ 
             return res.json({
                 msg: 'Success!',
                 result: posts.length,
                 posts
-            })
+            }) 
 
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
-    },
+    }, 
     deletePost: async (req, res) => {
         try {
             const post = await Posts.findOneAndDelete({_id: req.params.id, user: req.user._id})
