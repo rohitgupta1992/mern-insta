@@ -10,7 +10,7 @@ const EditData = (data, id, call) => {
 const SocketServer = (socket) => {
     // Connect - Disconnect
     socket.on('joinUser', user => {
-       console.log(user._id)
+    
         users.push({id: user._id, socketId: socket.id, followers: user.followers})
     })
 

@@ -32,7 +32,7 @@ const messageCtrl = {
                 recipients: [sender, recipient],
                 text, media, call
             }, { new: true, upsert: true })
-
+    
             const newMessage = new Messages({
                 conversation: newConversation._id,
                 sender, call,
@@ -109,6 +109,5 @@ const messageCtrl = {
         }
     },
 }
-
 
 export default messageCtrl
